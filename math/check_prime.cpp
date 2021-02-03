@@ -1,5 +1,5 @@
 /**
- * Copyright 2020 @author omkarlanghe
+ * Copyright 2020 @author omkarlanghe, OnurKader
  *
  * @file
  * A simple program to check if the given number if prime or not.
@@ -18,25 +18,22 @@
  * @param num number to be checked.
  * @return if number is prime, it returns @ true, else it returns @ false.
  */
+
+// std::integral T for C++20
 template <typename T>
 bool is_prime(T num) {
-    bool result = true;
-    if (num <= 1) {
-        return 0;
-    } else if (num == 2) {
-        return 1;
-    } else if ((num & 1) == 0) {
-        return 0;
-    }
-    if (num >= 3) {
-        for (T i = 3; (i * i) < (num); i = (i + 2)) {
-            if ((num % i) == 0) {
-                result = false;
-                break;
-            }
-        }
-    }
-    return (result);
+	if (num <= 1)
+		return false;
+	else if (num == 2)
+		return true;
+	else if ((num % 2) == 0)
+		return false;
+
+	for (T i = 3; (i * i) < (num); i += 2)
+		if ((num % i) == 0)
+			return false;
+
+	return true;
 }
 
 /**
@@ -50,7 +47,7 @@ int main() {
     int num;
     std::cout << "Enter the number to check if it is prime or not" << std::endl;
     std::cin >> num;
-    bool result = is_prime(num);
+    const bool result = is_prime(num);
     if (result) {
         std::cout << num << " is a prime number" << std::endl;
     } else {
